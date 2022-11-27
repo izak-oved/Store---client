@@ -1,7 +1,8 @@
 import styles from "styles/AddToBasketBtn.module.scss";
 import { BasketContext } from "context/BasketContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import GetIcon from "components/GetIcon";
+import Quantity from "./Quantity";
 
 const AddToBasketBtn = ({ data: product }) => {
   const { basketItems, setBasketItems, setBasketTotal, currentQuantity } = useContext(BasketContext);
@@ -28,8 +29,12 @@ const AddToBasketBtn = ({ data: product }) => {
 
     setBasketTotal((oldTotal) => (oldTotal += product.price * (currentQuantity || 1)));
   };
+  let pB = basketItems.find((item) => item.id === product.id);
 
   return (
+
+    pB ?   <Quantity data={product} /> : 
+
     <button
       className={styles.addToBasket}
       onClick={(e) => {

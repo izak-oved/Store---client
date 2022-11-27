@@ -76,7 +76,7 @@ const Detail = () => {
                 <div className={styles.quantityBox}>
                   <Quantity data={getItemFromBasket(result.data)} />
                 </div>
-                <AddToBasketBtn data={result.data} />
+                {/* <AddToBasketBtn data={result.data} /> */}
               </div>
             </div>
           </div>

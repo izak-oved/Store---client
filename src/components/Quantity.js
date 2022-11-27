@@ -12,7 +12,8 @@ const Quantity = ({ data }) => {
     setCurrentQuantity(1);
   }, [data.quantity]);
 
-  const increase = () => {
+  const increase = (e) => {
+    e.preventDefault();
     let arr = [...basketItems];
     let filtered = basketItems.filter((item) => item.id === data.id)[0];
     if (filtered) {
@@ -29,7 +30,8 @@ const Quantity = ({ data }) => {
     }
   };
 
-  const decrease = () => {
+  const decrease = (e) => {
+    e.preventDefault();
     let arr = [...basketItems];
     let filtered = basketItems.filter((item) => item.id === data.id)[0];
     if (filtered && filtered.quantity > 1) {
