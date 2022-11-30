@@ -47,6 +47,7 @@ const Quantity = ({ data }) => {
         setCurrentQuantity(parseInt(inp.current.value) - 1);
         inp.current.value = currentQuantity - 1;
       }
+      
     }
   };
 

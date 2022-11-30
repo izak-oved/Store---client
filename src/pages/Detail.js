@@ -4,7 +4,7 @@ import Quantity from "components/Quantity";
 import Title from "components/Title";
 import { BasketContext } from "context/BasketContext";
 import useMakeRequest from "hooks/useMakeRequest";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import styles from "styles/Detail.module.scss";
 
@@ -15,6 +15,11 @@ const Detail = () => {
 
   const result = useMakeRequest(`https://fakestoreapi.com/products/${id}`);
   const { basketItems } = useContext(BasketContext);
+
+
+
+
+
 
   const setStars = (rate) => {
     let elements = [];
@@ -69,15 +74,16 @@ const Detail = () => {
               </div>
               <div className={styles.price}>
                 <p>
-                  {result.data.price.toFixed(2)} <small>TRY</small>
+                  {result.data.price.toFixed(2)} <small>$</small>
                 </p>
               </div>
-              <div className={styles.addToBasketAndQuantity}>
+              {basketItems.find((item) => item.id === result.data.id) ?
                 <div className={styles.quantityBox}>
                   <Quantity data={getItemFromBasket(result.data)} />
-                </div>
-                {/* <AddToBasketBtn data={result.data} /> */}
-              </div>
+                </div> :
+                <div className={styles.addToBasketAndQuantity}>
+                  <AddToBasketBtn data={result.data} />
+                </div>}
             </div>
           </div>
           <div className={styles.bottom}>

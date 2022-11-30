@@ -6,6 +6,8 @@ import CategoryItem from "./CategoryItem";
 import useMakeRequest from "hooks/useMakeRequest";
 import { BasketContext } from "context/BasketContext";
 import { useContext } from "react";
+import SearchBar from "./SearchBar";
+import linkBG from "images/logo2.png";
 
 const Header = () => {
   const result = useMakeRequest("https://fakestoreapi.com/products/categories");
@@ -15,12 +17,13 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.logo}>
         <Link to="/">
-          <h2>react store</h2>
+          <img className={styles.logo} src={linkBG} alt="Logo"/>
         </Link>
       </div>
       <div className={styles.navContainer}>
         <nav className={styles.nav}>
           <ul>
+             <li className={styles.search}><SearchBar /></li> 
             <li>
               <Link to="/" onClick={(e) => e.preventDefault()} className={styles.a}>
                 Categories

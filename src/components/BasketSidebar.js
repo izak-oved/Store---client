@@ -8,8 +8,34 @@ import { BasketContext } from "context/BasketContext";
 import { useContext, useRef } from "react";
 
 const BasketSidebar = () => {
-  const { basketIsOpen, setBasketIsOpen, basketItems, basketTotal: _basketTotal } = useContext(BasketContext);
+  const { basketIsOpen, setBasketIsOpen, basketItems,setBasketItems, basketTotal: _basketTotal } = useContext(BasketContext);
   const container = useRef();
+
+  const buy = () => {
+    let cart = {
+      userId: "6385ff82d2844ee3e67257c3", // from localstorage (token)
+      total: _basketTotal.toFixed(2),
+      cart: basketItems.map(item => {
+        return {
+          itemId: item.id,
+          count: item.quantity,
+          price: item.price
+        }
+      })
+    }
+
+    fetch('http://localhost:4000/api/order', { 
+      method: 'POST', 
+      body: JSON.stringify(cart) ,
+      headers: {
+      'Content-Type': 'application/json'
+    },})
+      .then(res => res.json())
+      .then(data => console.log(data))
+      setBasketIsOpen(false)
+      setBasketItems([])
+
+  }
 
   return (
     <div
@@ -45,7 +71,7 @@ const BasketSidebar = () => {
                   <span>{_basketTotal.toFixed(2)}</span>
                 </div>
               </div>
-              <button type="button" className={styles.confirmBtn}>
+              <button type="button" className={styles.confirmBtn} onClick={() => buy() }>
                 Confirm the basket
               </button>
             </div>

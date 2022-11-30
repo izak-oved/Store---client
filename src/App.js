@@ -19,6 +19,10 @@ import useMobileDetect from "hooks/useMobileDetect";
 // CONTEXT
 import BasketContextProvider from "context/BasketContext";
 
+
+
+
+
 const App = () => {
   const device = useMobileDetect();
 
