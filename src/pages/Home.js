@@ -20,6 +20,9 @@ console.log(result);
 
   }, [textFilter])
 
+
+  
+
   if (!result.data) {
     if (result.error) {
       return (

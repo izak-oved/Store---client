@@ -8,6 +8,7 @@ import { BasketContext } from "context/BasketContext";
 import { useContext } from "react";
 import SearchBar from "./SearchBar";
 import linkBG from "images/logo2.png";
+import LoginBtn from "./LoginBtn";
 
 const Header = () => {
   const result = useMakeRequest("https://fakestoreapi.com/products/categories");
@@ -18,6 +19,9 @@ const Header = () => {
       <div className={styles.logo}>
         <Link to="/">
           <img className={styles.logo} src={linkBG} alt="Logo"/>
+        </Link>
+        <Link to="/user">
+            <LoginBtn />
         </Link>
       </div>
       <div className={styles.navContainer}>
