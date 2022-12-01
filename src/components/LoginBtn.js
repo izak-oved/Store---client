@@ -1,7 +1,7 @@
 import styles from "styles/AddToBasketBtn.module.scss";
-function LoginBtn() {
+function LoginBtn(props) {
   return (
-    <button className={styles.addToBasket} >Login</button>
+    <button className={styles.addToBasket} >Log In</button>
   )
 }
 

@@ -7,9 +7,9 @@ import { BasketContext } from "../context/BasketContext";
 
 const Home = () => {
   const result = useMakeRequest("https://fakestoreapi.com/products/");
-console.log(result);
   const { textFilter, filteredList, setFilteredList} = useContext(BasketContext)
   useEffect(() => {
+    
     result.data&& setFilteredList(result.data)
 
   }, [result.data])

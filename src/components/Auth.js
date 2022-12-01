@@ -28,7 +28,7 @@ const Auth = ({setUser}) => {
     }
     //..............................................................
     const submitData = () => {
-        console.log("cdsac");
+      
         if (isSignup) {
             fetch('http://localhost:4000/api/user', {
                 method: 'POST',
@@ -49,7 +49,7 @@ const Auth = ({setUser}) => {
             })
                 .then(res => res.json())
                 .then((data) => {
-                    console.log(data)
+                    
                     if (data) {
                         navigate("/")
                         setUser(data[0])

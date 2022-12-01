@@ -9,20 +9,29 @@ import { useContext } from "react";
 import SearchBar from "./SearchBar";
 import linkBG from "images/logo2.png";
 import LoginBtn from "./LoginBtn";
+import LogOutBtn from "./LogOutBtn";
 
-const Header = () => {
+
+const Header = ({user ,logOut}) => {
   const result = useMakeRequest("https://fakestoreapi.com/products/categories");
   const { basketItems, setBasketIsOpen } = useContext(BasketContext);
-
+  
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
         <Link to="/">
           <img className={styles.logo} src={linkBG} alt="Logo"/>
         </Link>
+        {user.email ? <>
+        <Link to="/">
+            <LogOutBtn logOut ={logOut} />
+
+        </Link>
+        <h3 className={styles.tagName}>{`welcome ${user.name}`}</h3>
+        </>:
         <Link to="/user">
             <LoginBtn />
-        </Link>
+        </Link>}
       </div>
       <div className={styles.navContainer}>
         <nav className={styles.nav}>

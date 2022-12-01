@@ -27,14 +27,17 @@ import { useState } from "react";
 
 const App = () => {
 
-  const [user, setUser] = useState()
+  const [user, setUser] = useState({email:"",password:""})
   const device = useMobileDetect();
-
+  const logOut=()=>
+  {
+    setUser({email:"",password:""})
+  }
   return (
     <Router>
       <BasketContextProvider>
         <div className={clsx(device.type === "mobile" && styles.paddingForMobile, styles.container)}>
-          <Header />
+          <Header user = {user} logOut={logOut}/>
           <main className={styles.main}>
             <Routes>
               <Route path="/" element={<Home />}/>
