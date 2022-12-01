@@ -7,13 +7,15 @@ import BasketItem from "components/BasketItem";
 import { BasketContext } from "context/BasketContext";
 import { useContext, useRef } from "react";
 
-const BasketSidebar = () => {
+const BasketSidebar = ({user}) => {
   const { basketIsOpen, setBasketIsOpen, basketItems,setBasketItems, basketTotal: _basketTotal } = useContext(BasketContext);
   const container = useRef();
 
   const buy = () => {
+    console.log(user._id);
+    
     let cart = {
-      userId: "6385ff82d2844ee3e67257c3", // from localstorage (token)
+      userId: user._id, 
       total: _basketTotal.toFixed(2),
       cart: basketItems.map(item => {
         return {

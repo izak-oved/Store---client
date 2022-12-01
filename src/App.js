@@ -18,12 +18,16 @@ import useMobileDetect from "hooks/useMobileDetect";
 
 // CONTEXT
 import BasketContextProvider from "context/BasketContext";
+import Auth from "components/Auth";
+import { useState } from "react";
 
 
 
 
 
 const App = () => {
+
+  const [user, setUser] = useState()
   const device = useMobileDetect();
 
   return (
@@ -34,13 +38,14 @@ const App = () => {
           <main className={styles.main}>
             <Routes>
               <Route path="/" element={<Home />}/>
+              <Route path="/user" element={<Auth setUser={setUser}/>}/>
               <Route path="/product/:slug" element={  <Detail />}/>
               <Route path="/category/:slug" element={ <Category />}/>
             </Routes>
           </main>
           <Footer />
         </div>
-        <BasketSidebar />
+        <BasketSidebar user = {user} />
         {device.type === "mobile" && <MobileBottomNav />}
       </BasketContextProvider>
     </Router>
